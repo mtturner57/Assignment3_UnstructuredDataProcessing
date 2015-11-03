@@ -20,14 +20,14 @@ for link in soup.find_all('a', class_='sub-nav-link', href=True):
          if(url[:4] == 'http'):
             urlArray.append(url)
             foundUrls.append(url)
-         else:
-            urlArray2.append("http://www.utexas.edu" + url)
-            foundUrls.append("http://www.utexas.edu" + url)
+#         else:
+#            urlArray2.append("http://www.utexas.edu" + url)
+#            foundUrls.append("http://www.utexas.edu" + url)
     else:
         if(url[:4] == 'http'):
             ind = foundUrls.index(url)
-        else:
-            ind = foundUrls.index("http://www.utexas.edu" + url)
+#        else:
+#            ind = foundUrls.index("http://www.utexas.edu" + url)
 
 for a in urlArray:
     try:
@@ -37,16 +37,16 @@ for a in urlArray:
             url = link['href']
             if url not in foundUrls:
                 if(url[:4] == 'http'):
-                    urlArray.append(url)
+                    urlArray2.append(url)
                     foundUrls.append(url)
-                else:
-                    urlArray2.append("http://www.utexas.edu" + url)
-                    foundUrls.append("http://www.utexas.edu" + url)
+#                else:
+#                    urlArray2.append("http://www.utexas.edu" + url)
+#                    foundUrls.append("http://www.utexas.edu" + url)
             else:
                 if(url[:4] == 'http'):
                     ind = foundUrls.index(url)
-                else:
-                    ind = foundUrls.index("http://www.utexas.edu" + url)
+#                else:
+#                    ind = foundUrls.index("http://www.utexas.edu" + url)
     except requests.exceptions.SSLError as e:
         print(e)
     except requests.exceptions.ConnectionError as c:
@@ -60,16 +60,16 @@ for a in urlArray2:
             url = link['href']
             if url not in foundUrls:
                 if(url[:4] == 'http'):
-                    urlArray.append(url)
+                    urlArray3.append(url)
                     foundUrls.append(url)
-                else:
-                    urlArray2.append("http://www.utexas.edu" + url)
-                    foundUrls.append("http://www.utexas.edu" + url)
+#                else:
+#                   urlArray3.append("http://www.utexas.edu" + url)
+#                    foundUrls.append("http://www.utexas.edu" + url)
             else:
                 if(url[:4] == 'http'):
                     ind = foundUrls.index(url)
-                else:
-                    ind = foundUrls.index("http://www.utexas.edu" + url)
+#                else:
+#                   ind = foundUrls.index("http://www.utexas.edu" + url)
     except requests.exceptions.SSLError as e:
         print(e)
     except requests.exceptions.ConnectionError as c:
@@ -83,16 +83,16 @@ for a in urlArray3:
             url = link['href']
             if url not in foundUrls:
                 if(url[:4] == 'http'):
-                    urlArray.append(url)
+                    urlArray4.append(url)
                     foundUrls.append(url)
-                else:
-                    urlArray2.append("http://www.utexas.edu" + url)
-                    foundUrls.append("http://www.utexas.edu" + url)
+ #               else:
+ #                  urlArray4.append("http://www.utexas.edu" + url)
+ #                   foundUrls.append("http://www.utexas.edu" + url)
             else:
                 if(url[:4] == 'http'):
                     ind = foundUrls.index(url)
-                else:
-                    ind = foundUrls.index("http://www.utexas.edu" + url)
+ #               else:
+ #                   ind = foundUrls.index("http://www.utexas.edu" + url)
     except requests.exceptions.SSLError as e:
         print(e)
     except requests.exceptions.ConnectionError as c:
