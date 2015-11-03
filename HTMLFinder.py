@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup, SoupStrainer
+import csv
 
 urlArray = list()
 urlArray2 = list()
@@ -14,18 +15,24 @@ r = requests.get('http://www.utexas.edu/')
 
 soup = BeautifulSoup(r.content, "lxml")
 
-for link in soup.find_all('a', class_='sub-nav-link', href=True):
-    url = link['href']
-    if url not in foundUrls:
-         if(url[:4] == 'http'):
+for link in soup.find_all('a',  href=True):
+    try:
+        url = link['href']
+        if(url[:21] != 'http://www.utexas.edu'):
+                url = "http://www.utexas.edu" + url
+        r = requests.get(url)
+        if url not in urlArray:
             urlArray.append(url)
+        if url not in foundUrls:
             foundUrls.append(url)
-#         else:
-#            urlArray2.append("http://www.utexas.edu" + url)
-#            foundUrls.append("http://www.utexas.edu" + url)
-    else:
-        if(url[:4] == 'http'):
-            ind = foundUrls.index(url)
+        else:
+            print("First Level: Duplicate url found: " + url)
+    except requests.exceptions.SSLError as e:
+        pass
+    except requests.exceptions.ConnectionError as c:
+        pass
+    except requests.exceptions.InvalidURL as i:
+        pass
 #        else:
 #            ind = foundUrls.index("http://www.utexas.edu" + url)
 
@@ -35,24 +42,25 @@ for a in urlArray:
     try:
         r = requests.get('' + a)
         soups = BeautifulSoup(r.content, "lxml")
-        for link in soups.find_all('a', class_='sub-nav-link', href=True):
+        for link in soups.find_all('a', href=True):
             url = link['href']
+            if(url[:21] != 'http://www.utexas.edu'):
+                url = "http://www.utexas.edu" + url
+            r = requests.get(url)
+            if url not in urlArray2:
+                urlArray2.append(url)
             if url not in foundUrls:
-                if(url[:4] == 'http'):
-                    urlArray2.append(url)
-                    foundUrls.append(url)
-                else:
-                    urlArray2.append("http://www.utexas.edu" + url)
-                    foundUrls.append("http://www.utexas.edu" + url)
+                foundUrls.append(url)
             else:
-                if(url[:4] == 'http'):
-                    ind = foundUrls.index(url)
+                print("Second Level: Duplicate url found: " + url)
 #                else:
 #                    ind = foundUrls.index("http://www.utexas.edu" + url)
     except requests.exceptions.SSLError as e:
-        print(e)
+        pass
     except requests.exceptions.ConnectionError as c:
-        print(c)
+        pass
+    except requests.exceptions.InvalidURL as i:
+        pass
 
 print(len(urlArray2))
 
@@ -60,24 +68,23 @@ for a in urlArray2:
     try:
         r = requests.get('' + a)
         soups = BeautifulSoup(r.content, "lxml")
-        for link in soups.find_all('a', class_='sub-nav-link', href=True):
+        for link in soups.find_all('a', href=True):
             url = link['href']
+            if(url[:21] != 'http://www.utexas.edu'):
+                url = "http://www.utexas.edu" + url
+            r = requests.get(url)
+            if url not in urlArray3:
+                urlArray3.append(url)
             if url not in foundUrls:
-                if(url[:4] == 'http'):
-                    urlArray3.append(url)
-                    foundUrls.append(url)
-                else:
-                   urlArray3.append("http://www.utexas.edu" + url)
-                   foundUrls.append("http://www.utexas.edu" + url)
+                foundUrls.append(url)
             else:
-                if(url[:4] == 'http'):
-                    ind = foundUrls.index(url)
-#                else:
-#                   ind = foundUrls.index("http://www.utexas.edu" + url)
+                print("Third Level: Duplicate url found: " + url)
     except requests.exceptions.SSLError as e:
-        print(e)
+        pass
     except requests.exceptions.ConnectionError as c:
-        print(c)
+        pass
+    except requests.exceptions.InvalidURL as i:
+        pass
 
 print(len(urlArray3))
 
@@ -85,49 +92,50 @@ for a in urlArray3:
     try:
         r = requests.get('' + a)
         soups = BeautifulSoup(r.content, "lxml")
-        for link in soups.find_all('a', class_='sub-nav-link', href=True):
+        for link in soups.find_all('a', href=True):
             url = link['href']
+            if(url[:21] != 'http://www.utexas.edu'):
+                url = "http://www.utexas.edu" + url
+            r = requests.get(url)
+            if url not in urlArray4:
+                urlArray4.append(url)
             if url not in foundUrls:
-                if(url[:4] == 'http'):
-                    urlArray4.append(url)
-                    foundUrls.append(url)
-                else:
-                   urlArray4.append("http://www.utexas.edu" + url)
-                   foundUrls.append("http://www.utexas.edu" + url)
+                foundUrls.append(url)
             else:
-                if(url[:4] == 'http'):
-                    ind = foundUrls.index(url)
+                print("Fouth Level: Duplicate url found: " + url)
  #               else:
  #                   ind = foundUrls.index("http://www.utexas.edu" + url)
     except requests.exceptions.SSLError as e:
-        print(e)
+        pass
     except requests.exceptions.ConnectionError as c:
-        print(c)
+        pass
+    except requests.exceptions.InvalidURL as i:
+        pass
 
 print(len(urlArray4))
 
 for a in urlArray4:
-    print(len(urlArray5))
     try:
         r = requests.get('' + a)
         soups = BeautifulSoup(r.content, "lxml")
-        for link in soups.find_all('a', class_='sub-nav-link', href=True):
+        for link in soups.find_all('a', href=True):
             url = link['href']
+            if(url[:21] != 'http://www.utexas.edu'):
+                url = "http://www.utexas.edu" + url
+            r = requests.get(url)
+            if url not in urlArray5:
+                urlArray5.append(url)
             if url not in foundUrls:
-                if(url[:4] == 'http'):
-                    urlArray5.append(url)
-                    foundUrls.append(url)
-                else:
-                   urlArray5.append("http://www.utexas.edu" + url)
-                   foundUrls.append("http://www.utexas.edu" + url)
+                foundUrls.append(url)
             else:
-                if(url[:4] == 'http'):
-                    ind = foundUrls.index(url)
+                print("Fifth Level: Duplicate url found: " + url)
  #               else:
  #                   ind = foundUrls.index("http://www.utexas.edu" + url)
     except requests.exceptions.SSLError as e:
-        print(e)
+        pass
     except requests.exceptions.ConnectionError as c:
-        print(c)
+        pass
+    except requests.exceptions.InvalidURL as i:
+        pass
 
 #print(len(urlArray5))
