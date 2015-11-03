@@ -51,6 +51,22 @@ for a in urlArray2:
     except requests.exceptions.ConnectionError as c:
         print(c)
 
+for a in urlArray3:
+    try:
+        r = requests.get('' + a)
+        soups = BeautifulSoup(r.content, "lxml")
+        for link in soups.find_all('a', class_='sub-nav-link', href=True):
+            url = link['href']
+            if(url[:4] == 'http'):
+                urlArray4.append(url)
+            else:
+                urlArray4.append("http://www.utexas.edu" + url)
+    except requests.exceptions.SSLError as e:
+        print(e)
+    except requests.exceptions.ConnectionError as c:
+        print(c)
+
+
 print(len(urlArray))
 print(len(urlArray2))
 print(len(urlArray3))
